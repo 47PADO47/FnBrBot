@@ -1,0 +1,19 @@
+{
+  "name": "fnbrbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "dotenv": "^10.0.0",
+    "fnbr": "^1.4.1",
+    "node-fetch": "^2.6.1"
+  }
+}
