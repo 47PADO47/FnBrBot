@@ -3,13 +3,13 @@ const Logger = require('./Logger');
 const Util = require('./Util');
 
 module.exports = class BotClient extends Client {
-    constructor(config, g) {
+    constructor(config, auth) {
         super({
             "status": config.status,
             "platform": config.platform,
             "keepAliveInterval": 50,
             "cachePresences": false,
-            "auth": g,
+            "auth": auth,
             "partyConfig": {
                 "privacy": Enums.PartyPrivacy.PUBLIC,
                 "joinConfirmation": false,

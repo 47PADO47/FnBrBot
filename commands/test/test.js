@@ -10,9 +10,7 @@ module.exports = {
     timeout: '',
     ownerOnly: false,
     premiumOnly: false,
-    dmOnly: false,
     run: async (client, message, args) => {
-        console.log('test command')
         message.author.sendMessage('Test command works!')
     }
 }

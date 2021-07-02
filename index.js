@@ -5,6 +5,7 @@ const { readFileSync } = require('fs');
 const client = new Client(config, LoadAuth());
 
 client.login()
+
 function LoadAuth () {
     const json = {
         "checkEULA": true

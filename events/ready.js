@@ -4,11 +4,11 @@ module.exports = {
     run: async (client) => {
         client.logger.success(`Logged in as ${client.user.displayName}`);
 
-        /*const locker = {
-            outfit: client.cosmetics.find((c) => c.name === client.settings.outfit && c.type.value === 'outfit'),
-            backpack: client.cosmetics.find((c) => c.name === client.settings.backpack && c.type.value === 'backpack'),
-            pickaxe: client.cosmetics.find((c) => c.name === client.settings.pickaxe && c.type.value === 'pickaxe'),
-            emote: client.cosmetics.find((c) => c.name === client.settings.emote && c.type.value === 'emote')
+        const locker = {
+            outfit: client.cosmetics.data.find((c) => c.name === client.settings.outfit && c.type.value === 'outfit'),
+            backpack: client.cosmetics.data.find((c) => c.name === client.settings.backpack && c.type.value === 'backpack'),
+            pickaxe: client.cosmetics.data.find((c) => c.name === client.settings.pickaxe && c.type.value === 'pickaxe'),
+            emote: client.cosmetics.data.find((c) => c.name === client.settings.emote && c.type.value === 'emote')
         };
 
         for (const cosmetic of Object.keys(locker)) {
@@ -18,11 +18,9 @@ module.exports = {
             }
         }
 
-        ["Outfit", "Backpack", "Pickaxe", "Emote"].forEach(async e => {
-            var x = 'set' + e;
+        /*["Outfit", "Backpack", "Pickaxe", "Emote"].forEach(async e => {
+            var x = 'set'.concat(e);
             await client.party.me[x](locker[e.toLowerCase()].id)
         })*/
-        console.log(client.cosmetics)
-        console.log(typeof client.cosmetics)
     }
 }

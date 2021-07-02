@@ -5,31 +5,40 @@ const {
 const fetch = require('node-fetch');
 
 module.exports = class Util {
-        constructor() {
+    constructor() {
 
-        }
+    }
 
-        /**
-         * @returns {Object} all the cosmetics in game
-         */
-        LoadCosmetics() {
+    /**
+     * @returns {Object} all the cosmetics in game
+     */
+    LoadCosmetics() {
 
-            const url = 'https://fortnite-api.com/v2/cosmetics/br';
+        const url = 'https://fortnite-api.com/v2/cosmetics/br';
 
-            let data = {};
+        fetch(url)
+            .then(res => res.json())
+            .then(json => {
+                success('Loaded cosmetics')
+                return this.data = json.data;
+            })
+            .catch(e => error(e.message))
 
-            fetch(url)
-                .then(res => res.json())
-                .then(json => {
-                    data = json.data;
-                    success('Loaded cosmetics')
-                })
-                .catch(e => error(e.message))
-            
-            return data;
-            };
+        return this;
+    };
 
-        
+    /**
+     * 
+     * @param {Number} bytes bytes to format
+     * @returns {String} formatted bytes
+     */
+    formatBytes(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(1024));
+        return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
+    };
+
 };
 
 function success(str) {
