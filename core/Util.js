@@ -1,7 +1,5 @@
-const {
-    text,
-    style
-} = require('./console-colors');
+const { text, style } = require('./console-colors');
+const { writeFileSync, readFileSync, existsSync } = require('fs');
 const fetch = require('node-fetch');
 
 module.exports = class Util {
@@ -10,21 +8,34 @@ module.exports = class Util {
     }
 
     /**
-     * @returns {Object} all the cosmetics in game
+     * @returns {Promise} Download and saves all the cosmetics in game
      */
-    LoadCosmetics() {
+    DownloadCosmetics() {
 
         const url = 'https://fortnite-api.com/v2/cosmetics/br';
 
         fetch(url)
             .then(res => res.json())
-            .then(json => {
-                success('Loaded cosmetics')
-                return this.data = json.data;
+            .then(async json => {
+                await writeFileSync(`${process.cwd()}/cosmetics.json`, JSON.stringify(json.data, null, 2));
+                return success('Downloaded latest cosmetics');
             })
-            .catch(e => error(e.message))
+            .catch(e => error(e.message));
+    };
 
-        return this;
+    /**
+     * @returns {Object} Load the downloaded cosmetics
+     */
+    async LoadCosmetics() {
+        const path = `${process.cwd()}/cosmetics.json`;
+
+        if (existsSync(path)) {
+            success('Loaded cosmetics');
+            return JSON.parse(readFileSync(`${process.cwd()}/cosmetics.json`));
+        } else {
+            error(`Can't find a dir named "${path}"`);
+            return process.exit();
+        };
     };
 
     /**

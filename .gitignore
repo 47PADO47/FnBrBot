@@ -79,5 +79,7 @@ typings/
 .vscode/
 
 # Auth data
-
 deviceAuth.json
+
+# Cosmetics
+cosmetics.json

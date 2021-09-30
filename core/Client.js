@@ -22,11 +22,6 @@ module.exports = class BotClient extends Client {
             },
         });
         
-        this.logger = new Logger();
-        this.util = new Util();
-        this.cosmetics = this.util.LoadCosmetics();
-        this.settings = config;
-
         ["commands", "aliases", "timeout"].forEach(e => {
             this[e] = new Map();
         });
@@ -34,6 +29,12 @@ module.exports = class BotClient extends Client {
         ["events", "commands"].forEach(e => {
             require(`${process.cwd()}/handlers/${e}`)(this);
         });
+
+        this.logger = new Logger();
+        this.util = new Util();
+        this.util.DownloadCosmetics();
+        this.cosmetics = require(`${process.cwd()}/cosmetics.json`);//this.util.LoadCosmetics();
+        this.settings = config;
     }
 
     async login () {

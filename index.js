@@ -4,7 +4,7 @@ const { readFileSync } = require('fs');
 
 const client = new Client(config, LoadAuth());
 
-client.login()
+client.login();
 
 function LoadAuth () {
     const json = {
@@ -18,4 +18,4 @@ function LoadAuth () {
         json.authorizationCode = async () => await Client.consoleQuestion('Please input an authorization code:');
     }
     return json
-}
+};
