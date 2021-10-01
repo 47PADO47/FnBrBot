@@ -3,8 +3,8 @@ const { inspect } = require('util');
 module.exports = {
     name: 'eval',
     description: 'Evaluate some code',
-    usage: 'eval {code}',
-    aliases: [''],
+    usage: '{code}',
+    aliases: null,
     args: true,
     minArgs: '',
     maxArgs: '',

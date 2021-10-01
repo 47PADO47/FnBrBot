@@ -1,5 +1,4 @@
 const { Client, Enums } = require('fnbr');
-const Logger = require('./Logger');
 const Util = require('./Util');
 
 module.exports = class BotClient extends Client {
@@ -27,17 +26,21 @@ module.exports = class BotClient extends Client {
         });
 
         ["events", "commands"].forEach(e => {
-            require(`${process.cwd()}/handlers/${e}`)(this);
+            require(`${process.cwd()}/src/handlers/${e}`)(this);
         });
 
-        this.logger = new Logger();
         this.util = new Util();
+        this.logger = this.util.logger;
+
         this.util.DownloadCosmetics();
         this.cosmetics = require(`${process.cwd()}/cosmetics.json`);//this.util.LoadCosmetics();
+
         this.settings = config;
+        
+        this.status = config.skipLibCheck ? true : this.util.CheckVersion();
     }
 
     async login () {
-        await super.login();
+        this.status ? await super.login() : process.exit();
     }
 }

@@ -1,10 +1,12 @@
 {
   "prefix": "!",
   "ownerIds": ["4c472091dce947ed8274a30ad6459a29"],
+  "skipLibCheck": true,
   "status": "🛴",
   "platform": "IOS",
   "outfit": "Skeletara",
   "backpack": "TBD",
   "pickaxe": "Driver",
-  "emote": "Poki"
+  "emote": "Poki",
+  "level": 999
 }

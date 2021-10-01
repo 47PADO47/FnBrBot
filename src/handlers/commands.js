@@ -5,10 +5,10 @@ let table = new ascii("Commands");
 table.setHeading("Command Name", "Loaded Status");
 
 module.exports = (client) => {
-    readdirSync(`${process.cwd()}/commands/`).forEach(dir => {
-        const commands = readdirSync(`${process.cwd()}/commands/${dir}/`).filter(file => file.endsWith(".js"));
+    readdirSync(`${process.cwd()}/src/commands/`).forEach(dir => {
+        const commands = readdirSync(`${process.cwd()}/src/commands/${dir}/`).filter(file => file.endsWith(".js"));
         for (let file of commands) {
-            let pull = require(`${process.cwd()}/commands/${dir}/${file}`);
+            let pull = require(`${process.cwd()}/src/commands/${dir}/${file}`);
             if (pull.name) {
                 client.commands.set(pull.name, pull);
                 table.addRow(pull.name, '✅');

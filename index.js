@@ -1,4 +1,4 @@
-const Client = require('./core/Client');
+const Client = require('./src/core/Client');
 const config = require('./config.json');
 const { readFileSync } = require('fs');
 

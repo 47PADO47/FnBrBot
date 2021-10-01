@@ -1,8 +1,8 @@
-const fetch = require('node-fetch');
-
 module.exports = {
     run: async (client) => {
-        client.logger.success(`Logged in as ${client.user.displayName}`);
+        client.logger.success(`Logged in as ${client.user.displayName} (${client.user.email} - ${client.user.emailVerified ? "Email Verified ✔️" : "Email Not Verified ❌"})`);
+
+        process.title = `Fortnite Lobby Bot - Logged in as ${client.user.displayName} (${client.user.email} - ${client.user.id})`;
 
         const locker = {
             outfit: client.cosmetics.find((c) => c.name === (client.settings.outfit ? client.settings.outfit : "Recruit") && c.type.value === 'outfit'),
@@ -23,5 +23,8 @@ module.exports = {
             var x = 'set'.concat(e);
             await client.party.me[x](locker[e.toLowerCase()].id);
         });
+
+        await client.party.me.setLevel(parseInt(client.settings.level))
+        .then(() => client.logger.log(`Set Level to ${parseInt(client.settings.level)}`));
     }
 }

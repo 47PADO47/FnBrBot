@@ -1,11 +1,8 @@
-const {
-    writeFileSync
-} = require('fs');
+const { writeFileSync } = require('fs');
 const ms = require('ms');
 
 module.exports = {
     run: async (client, message) => {
-        //writeFileSync(`${process.cwd()}/firend-message.json`, JSON.stringify(message, null, 2))
 
         let prefix = client.settings.prefix || client.user.displayName;
 
@@ -19,10 +16,10 @@ module.exports = {
         if (!command) return;
 
         if (command.ownerOnly && !client.settings.ownerIds.includes(message.author.id)) {
-            return message.author.sendMessage(`❌ | ${message.author.displayName},  Only the owner can use this comand!`);
+            return message.author.sendMessage(`X | ${message.author.displayName},  Only the owner can use this comand!`);
         }
         if (command.args && !args.length) {
-            let reply = `❌ | ${message.author.displayName}, you didn't provide any arguments!`;
+            let reply = `X | ${message.author.displayName}, you didn't provide any arguments!`;
             if (command.usage) {
                 reply += `\n The proper usage would be: "${prefix}${command.usage}"`;
             }
@@ -32,7 +29,7 @@ module.exports = {
 
         if (command.minArgs && !args[command.minArgs]) {
             return message.author.sendMessage(
-                `❌ | ${message.author.displayName}, you need at least \`${
+                `X | ${message.author.displayName}, you need at least \`${
               command.minArgs + 1
             }\` arguments to run this command!\nThe proper usage would be: \`${prefix}${
               command.usage
@@ -42,13 +39,13 @@ module.exports = {
 
         if (command.maxArgs && args[command.maxArgs++]) {
             return message.author.sendMessage(
-                `❌ | ${message.author.displayName}, you used too many arguments! Max: ${command.maxArgs}\nThe proper usage would be: "${prefix}${command.usage}"`
+                `X | ${message.author.displayName}, you used too many arguments! Max: ${command.maxArgs}\nThe proper usage would be: "${prefix}${command.usage}"`
             );
         }
         
         if (command.timeout) {
             if (client.timeout.has(`${command.name}${message.author.id}`))
-                return message.author.sendMessage(`❌ | ${message.author.displayName}, you need to wait "${ms(
+                return message.author.sendMessage(`X | ${message.author.displayName}, you need to wait "${ms(
                     client.timeout.get(`${command.name}${message.author.id}`) - Date.now(), { long: true }
               )}" to use that command!`
                 );

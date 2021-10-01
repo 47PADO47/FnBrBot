@@ -1,8 +1,8 @@
 module.exports = {
-    name: 'test',
-    description: 'test command',
-    usage: 'test',
-    aliases: [''],
+    name: 'showpick',
+    description: 'Show the equipped pickaxe',
+    usage: '',
+    aliases: ["showpickaxe", "pointitout"],
     args: false,
     minArgs: '',
     maxArgs: '',
@@ -11,6 +11,6 @@ module.exports = {
     ownerOnly: false,
     premiumOnly: false,
     run: async (client, message, args) => {
-        message.author.sendMessage('Test command works!')
+        client.party.me.setEmote('EID_IceKing');
     }
 }
