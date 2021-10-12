@@ -24,7 +24,8 @@ module.exports = {
             await client.party.me[x](locker[e.toLowerCase()].id);
         });
 
-        await client.party.me.setLevel(parseInt(client.settings.level))
-        .then(() => client.logger.log(`Set Level to ${parseInt(client.settings.level)}`));
+        const level = client.settings.level ? parseInt(client.settings.level) : 100;
+        await client.party.me.setLevel(level)
+        .then(() => client.logger.log(`Set Level to ${level}`));
     }
 }

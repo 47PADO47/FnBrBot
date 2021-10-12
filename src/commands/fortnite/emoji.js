@@ -1,17 +1,15 @@
 module.exports = {
-    name: 'emoji',
+    name: require('path').parse(__filename).name,
     description: 'Change the bot\'s emoji',
-    usage: '{emoji}',
+    usage: `${require('path').parse(__filename).name} {name || id}`,
     aliases: null,
     args: true,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
-    ownerOnly: true,
-    premiumOnly: false,
+    minArgs: 0,
+    maxArgs: 0,
+    timeout: 5*1000,
+    ownerOnly: false,
     run: async (client, message, args) => {
-        const emoji = client.util.FindCosmetic(args.join(" "), "emoji");
+        const emoji = client.util.FindCosmetic(client.cosmetics, args.join(" "), "emoji");
 
         if (emoji) {
             client.party.me.setEmoji(emoji.id);

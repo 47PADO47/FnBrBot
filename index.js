@@ -10,12 +10,12 @@ function LoadAuth () {
     const json = {
         "checkEULA": true
     };
-    const deviceAuth_path = `${process.cwd()}/deviceAuth.json`;
+    const deviceAuth_path = `${process.cwd()}/temp/deviceAuth.json`;
 
     try {
         json.deviceAuth = JSON.parse(readFileSync(deviceAuth_path));
     } catch (e) {
-        json.authorizationCode = async () => await Client.consoleQuestion('Please input an authorization code:');
+        json.authorizationCode = async () => await Client.consoleQuestion('Please input an authorization code:\n');
     }
     return json
 };
