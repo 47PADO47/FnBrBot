@@ -1,16 +1,17 @@
 module.exports = {
-    name: 'test',
+    name: __filename.split('\\').pop().replace('.js', ''),
     description: 'test command',
-    usage: '',
+    usage: require('path').parse(__filename).name,
     aliases: null,
     args: false,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
+    minArgs: null,
+    maxArgs: -1,
+    timeout: null,
     ownerOnly: false,
-    premiumOnly: false,
     run: async (client, message, args) => {
+        console.log(this)
+        console.log(__filename)
+        console.log(require('path').parse(__filename))
         message.author.sendMessage('Test command works!')
     }
 }

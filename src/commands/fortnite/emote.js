@@ -1,17 +1,15 @@
 module.exports = {
-    name: 'emote',
+    name: require('path').parse(__filename).name,
     description: 'Change the bot\'s emote',
-    usage: '{emote}',
+    usage: `${require('path').parse(__filename).name} {name || id}`,
     aliases: ['dance'],
     args: true,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
+    minArgs: 0,
+    maxArgs: 0,
+    timeout: 5*1000,
     ownerOnly: false,
-    premiumOnly: false,
     run: async (client, message, args) => {
-        const emote = client.util.FindCosmetic(args.join(" "), "emote");
+        const emote = client.util.FindCosmetic(client.cosmetics, args.join(" "), "emote");
 
         if (emote) {
             client.party.me.setEmote(emote.id);

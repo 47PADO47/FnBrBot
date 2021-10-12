@@ -1,17 +1,15 @@
 module.exports = {
-    name: 'skin',
+    name: require('path').parse(__filename).name,
     description: 'Change the bot\'s skin',
-    usage: '{skin}',
+    usage: `${require('path').parse(__filename).name} {name || id}`,
     aliases: ['outfit'],
     args: true,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
+    minArgs: 0,
+    maxArgs: 0,
+    timeout: 5*1000,
     ownerOnly: false,
-    premiumOnly: false,
     run: async (client, message, args) => {
-        const skin = client.util.FindCosmetic(args.join(" "), "outfit");
+        const skin = client.util.FindCosmetic(client.cosmetics, args.join(" "), "outfit");
 
         if (skin) {
             client.party.me.setOutfit(skin.id);

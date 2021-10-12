@@ -1,17 +1,15 @@
 const { inspect } = require('util');
 
 module.exports = {
-    name: 'eval',
+    name: require('path').parse(__filename).name,
     description: 'Evaluate some code',
-    usage: '{code}',
+    usage: `${require('path').parse(__filename).name} {code}`,
     aliases: null,
     args: true,
-    minArgs: '',
-    maxArgs: '',
-    category: 'owner',
-    timeout: '',
+    minArgs: 0,
+    maxArgs: Infinity,
+    timeout: null,
     ownerOnly: true,
-    premiumOnly: false,
     run: async (client, message, args) => {
         try {
             const data = await eval(args.join(' ').replace(/```/g, ''));

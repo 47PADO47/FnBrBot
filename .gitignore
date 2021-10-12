@@ -78,8 +78,5 @@ typings/
 # VS code data
 .vscode/
 
-# Auth data
-deviceAuth.json
-
-# Cosmetics
-cosmetics.json
+# Temp Data
+temp/*

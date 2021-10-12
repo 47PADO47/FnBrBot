@@ -32,9 +32,15 @@ module.exports = class BotClient extends Client {
         this.util = new Util();
         this.logger = this.util.logger;
 
-        this.util.DownloadCosmetics();
-        this.cosmetics = require(`${process.cwd()}/cosmetics.json`);//this.util.LoadCosmetics();
-
+        (async () => {
+            if (!await this.util.CheckCosmetics()) return process.exit();
+            await this.util.DownloadCosmetics();
+            
+            setTimeout(async () => {
+                this.cosmetics = require(`${process.cwd()}/temp/cosmetics.json`);
+                }, 5*1000);
+        })();
+        
         this.settings = config;
         
         this.status = config.skipLibCheck ? true : this.util.CheckVersion();

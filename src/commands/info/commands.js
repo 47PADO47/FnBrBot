@@ -1,17 +1,15 @@
 const { readdirSync } = require("fs");
 
 module.exports = {
-    name: 'commands',
+    name: require('path').parse(__filename).name,
     description: 'Retrive all the bot commands',
-    usage: '[commandName]',
+    usage: `${require('path').parse(__filename).name} [commandName]`,
     aliases: null,
     args: false,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
+    minArgs: null,
+    maxArgs: 0,
+    timeout: null,
     ownerOnly: false,
-    premiumOnly: false,
     run: async (client, message, args) => {
         if (!args[0]) {
             let categories = [];
@@ -50,7 +48,7 @@ module.exports = {
               return message.author.sendMessage(`Can't find a command with the name "${args[0]}"`)
             };
 
-            return message.author.sendMessage(`\n- Help Menu | "${args[0]}" Command\n> Name: ${command.name ? command.name : "No name"}\n> Aliases: ${command.aliases ? command.aliases.join(',') : "No aliases"}\n> Usage: ${command.usage ? client.settings.prefix + command.name + command.usage : client.settings.prefix + command.name}\n> Description: ${command.description ? command.description : "No description"}`);
+            return message.author.sendMessage(`\n- Help Menu | "${args[0]}" Command\n> Name: ${command.name ? command.name : "No name"}\n> Aliases: ${command.aliases ? command.aliases.join(',') : "No aliases"}\n> Usage: ${command.usage ? client.settings.prefix + command.usage : "No usage"}\n> Description: ${command.description ? command.description : "No description"}`);
           };
     }
 }

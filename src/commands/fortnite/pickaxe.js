@@ -1,17 +1,15 @@
 module.exports = {
-    name: 'pickaxe',
+    name: require('path').parse(__filename).name,
     description: 'Change the bot\'s pickaxe',
-    usage: '{pickaxe}',
+    usage: `${require('path').parse(__filename).name} {name || id}`,
     aliases: ['pick'],
     args: true,
-    minArgs: '',
-    maxArgs: '',
-    category: '',
-    timeout: '',
+    minArgs: 0,
+    maxArgs: 0,
+    timeout: 5*1000,
     ownerOnly: false,
-    premiumOnly: false,
     run: async (client, message, args) => {
-        const pickaxe = client.util.FindCosmetic(args.join(" "), "pickaxe");
+        const pickaxe = client.util.FindCosmetic(client.cosmetics, args.join(" "), "pickaxe");
 
         if (pickaxe) {
             client.party.me.setPickaxe(pickaxe.id);
