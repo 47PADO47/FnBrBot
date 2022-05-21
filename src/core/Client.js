@@ -1,12 +1,13 @@
 const { Client, Enums } = require('fnbr');
 const Util = require('./Util');
+const { readdirSync } = require('fs');
 
 module.exports = class BotClient extends Client {
     constructor(config, auth) {
         super({
-            "status": config.status,
+            "defaultStatus": config.status,
             "platform": config.platform,
-            "keepAliveInterval": 50,
+            "xmppKeepAliveInterval": 50,
             "cachePresences": false,
             "auth": auth,
             "partyConfig": {
@@ -16,16 +17,14 @@ module.exports = class BotClient extends Client {
                 "maxSize": 16,
                 "chatEnabled": true
             },
-            "kairos": {
-                "color": Enums.KairosColor.LIME
-            },
+            "defaultOnlineType": Enums.PresenceOnlineType.ONLINE,
         });
         
         ["commands", "aliases", "timeout"].forEach(e => {
             this[e] = new Map();
         });
 
-        ["events", "commands"].forEach(e => {
+        readdirSync(`${process.cwd()}/src//handlers`).forEach(e => {
             require(`${process.cwd()}/src/handlers/${e}`)(this);
         });
 
@@ -38,7 +37,7 @@ module.exports = class BotClient extends Client {
             
             setTimeout(async () => {
                 this.cosmetics = require(`${process.cwd()}/temp/cosmetics.json`);
-                }, 5*1000);
+            }, 5*1000);
         })();
         
         this.settings = config;

@@ -1,4 +1,4 @@
-# FnBrBot (v1.0.0)
+# FnBrBot
 
 [![GitHub release](https://img.shields.io/github/v/release/47PADO47/FnBrBot)](https://GitHub.com/47PADO47/FnBrBot/releases/) [![Node js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org) ![Built with ❤️](http://ForTheBadge.com/images/badges/built-with-love.svg)
 
