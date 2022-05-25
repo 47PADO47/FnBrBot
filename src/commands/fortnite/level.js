@@ -1,17 +1,18 @@
-module.exports = {
-    name: require('path').parse(__filename).name,
+const Command = require("../../core/Command");
+
+module.exports = new Command({
+    name: 'level',
     description: 'Change the bot\'s level',
-    usage: `${require('path').parse(__filename).name} {number}`,
-    aliases: null,
+    usage: `{number}`,
     args: true,
     minArgs: 0,
     maxArgs: 0,
-    timeout: 30*1000,
+    timeout: 30,
     ownerOnly: true,
     run: async (client, message, args) => {
         const level = parseInt(args[0], 10);
 
         client.party.me.setLevel(level);
         return message.author.sendMessage(`Set level to "${level}"`);
-    }
-}
+    },
+});

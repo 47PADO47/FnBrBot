@@ -1,21 +1,19 @@
-module.exports = {
-    name: require('path').parse(__filename).name,
+const Command = require("../../core/Command");
+
+module.exports = new Command({
+    name: 'emote',
     description: 'Change the bot\'s emote',
-    usage: `${require('path').parse(__filename).name} {name || id}`,
+    usage: `{name || id}`,
     aliases: ['dance'],
     args: true,
     minArgs: 0,
     maxArgs: 0,
-    timeout: 5*1000,
-    ownerOnly: false,
+    timeout: 5,
     run: async (client, message, args) => {
         const emote = client.util.FindCosmetic(client.cosmetics, args.join(" "), "emote");
 
-        if (emote) {
-            client.party.me.setEmote(emote.id);
-            return message.author.sendMessage(`Set emote to "${emote.name}"`);
-        } else {
-            return message.author.sendMessage(`Could not find an emote named "${args.join(" ")}"`);
-        };
-    }
-}
+        if (!emote) return message.author.sendMessage(`Could not find an emote named "${args.join(" ")}"`);
+        client.party.me.setEmote(emote.id);
+        return message.author.sendMessage(`Set emote to "${emote.name}"`);
+    },
+});

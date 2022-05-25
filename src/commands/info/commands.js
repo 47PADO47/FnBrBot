@@ -1,15 +1,11 @@
+const Command = require("../../core/Command");
 const { readdirSync } = require("fs");
 
-module.exports = {
-    name: require('path').parse(__filename).name,
+module.exports = new Command({
+    name: 'commands',
     description: 'Retrive all the bot commands',
-    usage: `${require('path').parse(__filename).name} [commandName]`,
-    aliases: null,
-    args: false,
-    minArgs: null,
-    maxArgs: 0,
-    timeout: null,
-    ownerOnly: false,
+    usage: `[commandName]`,
+    args: true,
     run: async (client, message, args) => {
         if (!args[0]) {
             let categories = [];
@@ -50,5 +46,5 @@ module.exports = {
 
             return message.author.sendMessage(`\n- Help Menu | "${args[0]}" Command\n> Name: ${command.name ? command.name : "No name"}\n> Aliases: ${command.aliases ? command.aliases.join(',') : "No aliases"}\n> Usage: ${command.usage ? client.settings.prefix + command.usage : "No usage"}\n> Description: ${command.description ? command.description : "No description"}`);
           };
-    }
-}
+    },
+});

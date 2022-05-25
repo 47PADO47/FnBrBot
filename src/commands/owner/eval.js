@@ -1,14 +1,13 @@
+const Command = require('../../core/Command');
 const { inspect } = require('util');
 
-module.exports = {
-    name: require('path').parse(__filename).name,
+module.exports = new Command({
+    name: 'eval',
     description: 'Evaluate some code',
-    usage: `${require('path').parse(__filename).name} {code}`,
-    aliases: null,
+    usage: `{code}`,
     args: true,
     minArgs: 0,
     maxArgs: Infinity,
-    timeout: null,
     ownerOnly: true,
     run: async (client, message, args) => {
         try {
@@ -22,5 +21,5 @@ module.exports = {
         } catch (e) {
             message.author.sendMessage(e.message)
         }
-    }
-}
+    },
+});

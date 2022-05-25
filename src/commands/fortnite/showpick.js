@@ -1,14 +1,11 @@
-module.exports = {
-    name: require('path').parse(__filename).name,
+const Command = require("../../core/Command");
+
+module.exports = new Command({
+    name: 'showpick',
     description: 'Show the equipped pickaxe',
-    usage: require('path').parse(__filename).name,
     aliases: ["showpickaxe", "pointitout"],
-    args: false,
-    minArgs: null,
-    maxArgs: -1,
-    timeout: 5*1000,
-    ownerOnly: false,
+    timeout: 5,
     run: async (client, message, args) => {
         client.party.me.setEmote('EID_IceKing');
-    }
-}
+    },
+});

@@ -17,7 +17,7 @@ module.exports = {
         if (command.ownerOnly && !client.settings.ownerIds.includes(message.author.id)) {
             return message.author.sendMessage(`X | ${message.author.displayName},  Only the owner can use this comand!`);
         }
-        if (command.args && !args.length) {
+        if (command.args && !args.length && command.name !== 'commands') {
             let reply = `X | ${message.author.displayName}, you didn't provide any arguments!`;
             if (command.usage) {
                 reply += `\n The proper usage would be: "${prefix}${command.usage}"`;

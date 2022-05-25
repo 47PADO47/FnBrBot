@@ -1,21 +1,18 @@
-module.exports = {
-    name: require('path').parse(__filename).name,
+const Command = require("../../core/Command")
+
+module.exports = new Command({
+    name: 'emoji',
     description: 'Change the bot\'s emoji',
-    usage: `${require('path').parse(__filename).name} {name || id}`,
-    aliases: null,
+    usage: `{name || id}`,
     args: true,
     minArgs: 0,
     maxArgs: 0,
-    timeout: 5*1000,
-    ownerOnly: false,
+    timeout: 5,
     run: async (client, message, args) => {
         const emoji = client.util.FindCosmetic(client.cosmetics, args.join(" "), "emoji");
 
-        if (emoji) {
-            client.party.me.setEmoji(emoji.id);
-            return message.author.sendMessage(`Set emoji to "${emoji.name}"`);
-        } else {
-            return message.author.sendMessage(`Could not find an emoji named "${args.join(" ")}"`);
-        };
-    }
-}
+        if (!emoji) return message.author.sendMessage(`Could not find an emoji named "${args.join(" ")}"`);
+        client.party.me.setEmoji(emoji.id);
+        return message.author.sendMessage(`Set emoji to "${emoji.name}"`);
+    },
+});

@@ -1,14 +1,10 @@
-module.exports = {
-    name: require('path').parse(__filename).name,
+const Command = require("../../core/Command");
+
+module.exports = new Command({
+    name: 'purpleskull',
     description: 'Change the bot\'s skin to purpleskull',
-    usage: require('path').parse(__filename).name,
-    aliases: null,
-    args: false,
-    minArgs: null,
-    maxArgs: -1,
-    timeout: 5*1000,
-    ownerOnly: false,
+    timeout: 5,
     run: async (client, message, args) => {
         client.party.me.setOutfit('CID_030_Athena_Commando_M_Halloween', [{ channel: 'ClothingColor', variant: 'Mat1' }]);
     }
-}
+});
