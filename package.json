@@ -2,7 +2,7 @@
   "name": "fnbrbot",
   "version": "1.1.0",
   "description": "A powerful fortnite lobby bot written in Node.js and powered by the fnbr library",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "homepage": "https://github.com/47PADO47/FnBrBot#readme",
   "repository": {
     "type": "git",
@@ -19,9 +19,12 @@
   "author": "PADO",
   "license": "ISC",
   "dependencies": {
-    "ascii-table": "^0.0.9",
-    "fnbr": "^3.0.0",
-    "ms": "^2.1.3",
-    "node-fetch": "^2.6.7"
+    "@schiacciata/logger": "github:schiacciata/logger",
+    "fnbr": "^4.0.0",
+    "undici": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.4",
+    "typescript": "^5.3.3"
   }
 }
