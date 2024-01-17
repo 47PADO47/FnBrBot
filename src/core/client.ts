@@ -81,7 +81,7 @@ class BotClient extends Client {
             this.logger.error(`Could not download cosmetics`);
             return process.exit(1);
         }
-    };
+    }
 
     async start() {
         await this._loadHandlers();

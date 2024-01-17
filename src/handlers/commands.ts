@@ -26,11 +26,11 @@ class CommandHandler extends Handler {
                 client.commands.set(name, command);
                 if (command.aliases) {
                     command.aliases.forEach(alias => client.aliases.set(alias, command.name));
-                };
+                }
         
                 client.logger.info(`Loaded command "${category}/${name}" 💬`);
             }
-        };
+        }
     }
 }
 

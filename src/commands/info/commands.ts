@@ -33,7 +33,7 @@ class CommandsCommand extends Command {
     if (!command) {
       message.reply(`Can't find a command with the name "${args[0]}"`);
       return;
-    };
+    }
 
     const menu = [
       `- Help Menu | "${args[0]}"`,

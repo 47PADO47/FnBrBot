@@ -34,7 +34,7 @@ class ReadyEvent extends Event {
             if (!cosmetic) {
                 //client.logger.error(`Could not find ${lockerOption}, please check the spelling!`);
                 return;
-            };
+            }
 
             client.logger.log(`Set ${lockerOption} to ${cosmetic.name}`);
 
