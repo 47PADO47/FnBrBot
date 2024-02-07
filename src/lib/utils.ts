@@ -1,7 +1,3 @@
-import path from "path";
-
-const getDist = (...location: string[]) => path.resolve(process.cwd(), 'dist', 'src', ...location);
-
 const formatBytes = (bytes: number) => {
     if (bytes === 0) return '0 Bytes';
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -11,6 +7,5 @@ const formatBytes = (bytes: number) => {
 }
 
 export {
-    getDist,
     formatBytes,
 }
