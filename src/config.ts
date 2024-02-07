@@ -4,7 +4,6 @@ import { Config } from "./types/config";
 const config: Config = {
     prefix: "!",
     ownerIds: process.env.OWNER_IDS?.split(', ') || [],
-    skipLibCheck: false,
     status: "🛴",
     platform: Platform.IOS,
     outfit: "Skeletara",
