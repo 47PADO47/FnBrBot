@@ -80,5 +80,6 @@ typings/
 
 # Temp Data
 temp/*
+.temp
 
 dist
