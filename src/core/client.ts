@@ -1,5 +1,4 @@
 import { Client, Enums } from 'fnbr';
-import * as utils from '../lib/utils'
 import * as auth from '../lib/auth';
 import { Config } from '../types/config';
 import Command from './command';
@@ -9,6 +8,7 @@ import { readdir } from 'fs/promises';
 import { Logger } from '@schiacciata/logger';
 import { Cosmetic, SearchCosmeticOptions } from '../types/cosmetics';
 import { request } from 'undici'
+import { getDist } from '../lib/fs';
 
 class BotClient extends Client {
     settings: Config;
@@ -45,11 +45,11 @@ class BotClient extends Client {
     }
     
     private async _loadHandlers(): Promise<void> {
-        const handlers = (await readdir(utils.getDist('handlers')))
+        const handlers = (await readdir(getDist('handlers')))
             .filter(file => file.endsWith('.js'));
 
         for await (const file of handlers) {
-            const { default: handler } = await import(utils.getDist('handlers', file)) as { default: Handler };
+            const { default: handler } = await import(getDist('handlers', file)) as { default: Handler };
             
             try {
                 await handler.run({

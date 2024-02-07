@@ -1,7 +1,7 @@
 import Command from "../../core/command";
 import { CommandRunOptions } from "../../types/command";
 import * as utils from '../../lib/utils';
-import pkg from '../../../package.json';
+import { readFile } from "fs/promises";
 
 class BotInfoCommand extends Command {
     constructor() {
@@ -11,8 +11,8 @@ class BotInfoCommand extends Command {
         })
     }
 
-    async run({ client, message, args }: CommandRunOptions) {
-        if (!client.party) return;
+    async run({ client, message }: CommandRunOptions) {
+        const pkg = JSON.parse(await readFile(`${process.cwd()}/package.json`, 'utf-8'));
         const fnbr_v = pkg.dependencies.fnbr;
 
         const infos: string[] = [

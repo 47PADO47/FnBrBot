@@ -1,8 +1,8 @@
 import { readdir } from 'fs/promises';
 import Handler from '../core/handler';
 import { HandlerRunOptions } from '../types/handler';
-import * as utils from '../lib/utils'
 import Command from '../core/command';
+import { getDist } from '../lib/fs';
 
 class CommandHandler extends Handler {
     constructor() {
@@ -12,11 +12,11 @@ class CommandHandler extends Handler {
     }
 
     async run({ client }: HandlerRunOptions): Promise<void> {
-        const commandPath = utils.getDist('commands');
+        const commandPath = getDist('commands');
         const categories = await readdir(commandPath);
 
         for await (const category of categories) {
-            const commands = (await readdir(utils.getDist(commandPath, category)))
+            const commands = (await readdir(getDist(commandPath, category)))
             .filter(file => file.endsWith('.js'));
 
             for await (const file of commands) {

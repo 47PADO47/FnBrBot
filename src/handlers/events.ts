@@ -1,9 +1,9 @@
 import { readdir } from 'fs/promises';
 import Handler from '../core/handler';
 import { HandlerRunOptions } from '../types/handler';
-import * as utils from '../lib/utils'
 import Event from '../core/event';
 import { ClientEvents } from 'fnbr';
+import { getDist } from '../lib/fs';
 
 class EventHandler extends Handler {
     constructor() {
@@ -13,7 +13,7 @@ class EventHandler extends Handler {
     }
 
     async run({ client }: HandlerRunOptions): Promise<void> {
-        const eventPath = utils.getDist('events');
+        const eventPath = getDist('events');
         const events = (await readdir(eventPath))
             .filter(file => file.endsWith('.js'));
 
