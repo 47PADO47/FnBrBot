@@ -1,11 +1,12 @@
+import { Platform } from "fnbr/dist/enums/Enums";
 import { Config } from "./types/config";
 
 const config: Config = {
     prefix: "!",
-    ownerIds: ["4c472091dce947ed8274a30ad6459a29"],
+    ownerIds: process.env.OWNER_IDS?.split(', ') || [],
     skipLibCheck: false,
     status: "🛴",
-    platform: "IOS",
+    platform: Platform.IOS,
     outfit: "Skeletara",
     backpack: "Pursuit",
     pickaxe: "Driver",

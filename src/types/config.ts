@@ -2,7 +2,7 @@ import { Platform } from 'fnbr';
 
 type Config = {
     prefix: string;
-    ownerIds?: string[];
+    ownerIds: string[];
     skipLibCheck?: boolean;
     status?: string;
     platform?: Platform;
