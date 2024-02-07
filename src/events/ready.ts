@@ -36,7 +36,7 @@ class ReadyEvent extends Event {
                 return;
             }
 
-            client.logger.log(`Set ${lockerOption} to ${cosmetic.name}`);
+            client.logger.success(`Set ${lockerOption} to ${cosmetic.name}`);
 
             const method: `set${LockerOptions}` = `set${lockerOption}`;
             const itemId: string = cosmetic.id;
@@ -46,7 +46,7 @@ class ReadyEvent extends Event {
 
         const level = client.settings.level ?? 100;
         await client.party.me.setLevel(level)
-            .then(() => client.logger.log(`Set Level to ${level}`));
+            .then(() => client.logger.success(`Set Level to ${level}`));
     }
 }
 
