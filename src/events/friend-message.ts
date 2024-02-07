@@ -23,7 +23,7 @@ class FriendMessageEvent extends Event {
         const command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd) || '');
         if (!command) return;
 
-        if (command.ownerOnly && client.settings.ownerIds && !client.settings.ownerIds.includes(message.author.id)) {
+        if (command.ownerOnly && !client.settings.ownerIds.includes(message.author.id)) {
             return message.author.sendMessage(`X | ${message.author.displayName},  Only the owner can use this comand!`);
         }
         if (command.args && !args.length && command.name !== 'commands') {
