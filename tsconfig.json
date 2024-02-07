@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "strict": true,
         "moduleResolution": "node",
         "module": "commonjs",
@@ -12,8 +13,6 @@
             "ESNext.symbol"
         ],
         "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
         "removeComments": false,
         "alwaysStrict": true,
         "pretty": true,
@@ -25,6 +24,8 @@
         "strictPropertyInitialization": false,
         "experimentalDecorators": true,
         "resolveJsonModule": true,
+        "rootDir": "src",
+        "noImplicitAny": true,
+        "allowJs": true,
     },
-    "include": ["./src/**/*"]
 }
