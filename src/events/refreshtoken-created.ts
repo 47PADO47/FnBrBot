@@ -2,6 +2,7 @@ import Event from '../core/event';
 import BotClient from '../core/client';
 import { RefreshTokenData } from 'fnbr';
 import { writeFile } from 'fs/promises';
+import { existsOrCreate, getTemp } from '../lib/fs';
 
 class RefreshTokenCreatedEvent extends Event {
     constructor() {
@@ -12,8 +13,12 @@ class RefreshTokenCreatedEvent extends Event {
     }
     
     async run (client: BotClient, refreshTokenData: RefreshTokenData) {
-        await writeFile(`${process.cwd()}/temp/refreshToken`, refreshTokenData.token);
-        client.logger.success(`Created "/temp/refreshToken" file, expires at ${refreshTokenData.expiresAt}`);
+        existsOrCreate(getTemp());
+
+        const refreshTokenPath = getTemp(`refreshToken`);
+        await writeFile(refreshTokenPath, refreshTokenData.token);
+        
+        client.logger.success(`Created "${refreshTokenPath}" file, expires at ${refreshTokenData.expiresAt}`);
     }
 }
 
