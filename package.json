@@ -22,7 +22,7 @@
   "dependencies": {
     "@schiacciata/logger": "github:schiacciata/logger",
     "fnbr": "^4.0.0",
-    "undici": "^6.3.0"
+    "undici": "^6.6.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.4",
